@@ -43,19 +43,19 @@ class FileStorage():
                 newDict2 = json.loads(loadedString)
                 for x, y in newDict2.items():
                     if x.split(".")[0] == "BaseModel":
-                        newDict2[x] = BaseModel(y)
+                        newDict2[x] = BaseModel(**y)
                     elif x.split(".")[0] == "User":
-                        newDict2[x] = User(y)
+                        newDict2[x] = User(**y)
                     elif x.split(".")[0] == "State":
-                        newDict2[x] = State(y)
+                        newDict2[x] = State(**y)
                     elif x.split(".")[0] == "City":
-                        newDict2[x] = City(y)
+                        newDict2[x] = City(**y)
                     elif x.split(".")[0] == "Amenity":
-                        newDict2[x] = Amenity(y)
+                        newDict2[x] = Amenity(**y)
                     elif x.split(".")[0] == "Place":
-                        newDict2[x] = Place(y)
+                        newDict2[x] = Place(**y)
                     elif x.split(".")[0] == "Review":
-                        newDict2[x] = Review(y)
+                        newDict2[x] = Review(**y)
                 self.__objects = newDict2
         except FileNotFoundError:
             pass
