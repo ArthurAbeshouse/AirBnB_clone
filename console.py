@@ -151,13 +151,14 @@ class HBNBCommand(cmd.Cmd):
                         return
                     myType = type(getattr(y, argss[2]))
                     setattr(y, argss[2], myType(argss[3]))
-                    self.storage.save()
+                    y.save()
                     return
             print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
     def default(self, line):
+        """ Overide default """
         allObj = self.storage.all()
         try:
             customCommand = line.split('.')[1].split('(')[0]
@@ -188,7 +189,7 @@ class HBNBCommand(cmd.Cmd):
                     ' ' + myArgs[2][:-1].strip('" '))
             else:
                 return super().default(line)
-        except BaseException:
+        except IndexError:
             return super().default(line)
 
 
