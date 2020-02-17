@@ -14,7 +14,7 @@ from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter"""
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     storage = models.storage
     myClasses = [
         "BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
                 for x, y in allObj.items():
                     if x.split('.')[0] == line.split('.')[0]:
                         myList.append(str(y))
-                        print (("[{}]".format( 
+                        print (("[{}]".format(
                             ', '.join(map(str, myList)))))
             elif customCommand == "count":
                 count = 0
@@ -188,7 +188,7 @@ class HBNBCommand(cmd.Cmd):
                     ' ' + myArgs[2][:-1].strip('" '))
             else:
                 return super().default(line)
-        except:
+        except BaseException:
             return super().default(line)
 
 
