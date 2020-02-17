@@ -58,6 +58,7 @@ class TestConsole(unittest.TestCase):
         """Tests if dictionary is functional"""
         B_Dict = self.BaseTest.to_dict()
         self.assertEqual(self.BaseTest.__class__.__name__, 'BaseModel')
+        self.assertEqual(B_Dict["__class__"], 'BaseModel')
         self.assertIsInstance(B_Dict['created_at'], str)
         self.assertIsInstance(B_Dict['updated_at'], str)
 
