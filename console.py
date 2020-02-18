@@ -37,37 +37,30 @@ class HBNBCommand(cmd.Cmd):
         argss = shlex.split(line)
         if argss[0] == "BaseModel":
             new = BaseModel()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "User":
             new = User()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "State":
             new = State()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "City":
             new = City()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "Amenity":
             new = Amenity()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "Place":
             new = Place()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "Review":
             new = Review()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif line == "":
