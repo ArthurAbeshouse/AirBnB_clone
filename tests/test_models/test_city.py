@@ -21,14 +21,6 @@ class TestCity(TestBaseModel):
         cls.CityTest.name = "NH"
         cls.CityTest.state_id = "CT"
 
-#    def test_attributes_City(self):
-#        """Tests for attributes"""
-#        self.assertTrue('id' in self.CityTest.__dict__)
-#        self.assertTrue('created_at' in self.CityTest.__dict__)
-#        self.assertTrue('updated_at' in self.CityTest.__dict__)
-#        self.assertTrue('state_id' in self.CityTest.__dict__)
-#        self.assertTrue('name' in self.CityTest.__dict__)
-
     def test_subclass_City(self):
         """Tests if City is a subclass of BaseModel"""
         self.assertTrue(issubclass(self.CityTest.__class__, BaseModel), True)

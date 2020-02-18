@@ -15,7 +15,7 @@ class TestBaseModel(unittest.TestCase):
     def setUp(cls):
         """Sets up testing methods"""
         cls.BaseTest = BaseModel()
-        cls.BaseTest.phrase = "Drive"
+        cls.BaseTest.name = "Mike"
         cls.BaseTest.number = 55
 
     def test_attributes_BaseModel(self):
@@ -42,11 +42,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(uuid.UUID(self.BaseTest.id), uuid.UUID)
 
     def test_create_BaseModel(self):
+        """tests if it can create a base model"""
         base = self.BaseTest
         base.created_at = dt.now()
         self.assertIsInstance(base.created_at, dt)
 
     def test_update_BaseModel(self):
+        """Tests the update function"""
         base = self.BaseTest
         base.updated_at = dt.now()
         store = base.updated_at

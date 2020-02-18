@@ -20,21 +20,6 @@ class TestState(TestBaseModel):
         cls.StateTest = State()
         cls.StateTest.name = "CT"
 
-#    def tearDown(cls):
-#        """Tears down testing methods"""
-#        del cls.StateTest
-#        try:
-#            os.remove("file.json")
-#        except Exception:
-#            pass
-
-#    def test_attributes_State(self):
-#        """Tests for attributes"""
-#        self.assertTrue('id' in self.StateTest.__dict__)
-#        self.assertTrue('created_at' in self.StateTest.__dict__)
-#        self.assertTrue('updated_at' in self.StateTest.__dict__)
-#        self.assertTrue('name' in self.StateTest.__dict__)
-
     def test_subclass_State(self):
         """Tests if State is a subclass of BaseModel"""
         self.assertTrue(issubclass(self.StateTest.__class__, BaseModel), True)
