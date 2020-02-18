@@ -2,11 +2,12 @@
 """Unit tests for BaseModel"""
 import os
 import unittest
-import pep8
 from models.base_model import BaseModel
+import uuid
+from datetime import datetime as dt
+from models import storage
 
-
-class TestConsole(unittest.TestCase):
+class TestBaseModel(unittest.TestCase):
     """Tests for basemodel class"""
 
     @classmethod
@@ -15,30 +16,7 @@ class TestConsole(unittest.TestCase):
         cls.BaseTest = BaseModel()
         cls.BaseTest.phrase = "Drive"
         cls.BaseTest.number = 55
-
-    @classmethod
-    def tearDown(cls):
-        """Tears down testing methods"""
-        del cls.BaseTest
-        try:
-            os.remove("file.json")
-        except Exception:
-            pass
-
-    def test_pep8_BaseModel(self):
-        """Tests pep8"""
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/base_model.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
-
-    def test_docstring_BaseModel(self):
-        """Tests docstrings"""
-        self.assertIsNotNone(BaseModel.__doc__)
-        self.assertIsNotNone(BaseModel.__init__.__doc__)
-        self.assertIsNotNone(BaseModel.__str__.__doc__)
-        self.assertIsNotNone(BaseModel.save.__doc__)
-        self.assertIsNotNone(BaseModel.to_dict.__doc__)
-
+    
     def test_attributes_BaseModel(self):
         """Tests for attributes"""
         self.assertTrue(hasattr(BaseModel, "__init__"))
@@ -48,11 +26,6 @@ class TestConsole(unittest.TestCase):
     def test_init_BaseModel(self):
         """Tests if BaseTest is a type BaseModel"""
         self.assertTrue(isinstance(self.BaseTest, BaseModel))
-
-    def test_save_BaseModel(self):
-        """Tests if saving works"""
-        self.BaseTest.save()
-        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
 
     def test_to_dict_BaseModel(self):
         """Tests if dictionary is functional"""
@@ -64,8 +37,28 @@ class TestConsole(unittest.TestCase):
 
     def test_id_BaseModel(self):
         """Tests for unique ids"""
-        ids = [BaseModel().id for i in range(1000)]
-        self.assertEqual(len(set(ids)), len(ids))
+        self.assertIsInstance(self.BaseTest.id, str)
+        self.assertIsInstance(uuid.UUID(self.BaseTest.id), uuid.UUID)
+
+    def test_create_BaseModel(self):
+        base = self.BaseTest
+        base.created_at = dt.now()
+        self.assertIsInstance(base.created_at, dt)
+
+    def test_update_BaseModel(self):
+        base = self.BaseTest
+        base.updated_at = dt.now()
+        store = base.updated_at
+        self.assertIsInstance(base.updated_at, dt)
+        base.updated_at = dt.now()
+        self.assertNotEqual(base.updated_at, store)
+
+    def tearDown(self):
+        """Tears down testing methods"""
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
 if __name__ == "__main__":
     unittest.main()
