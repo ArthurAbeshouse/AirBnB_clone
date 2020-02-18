@@ -48,7 +48,9 @@ class TestState(TestBaseModel):
     def test_save_State(self):
         """Tests if saving works"""
         self.StateTest.save()
-        self.assertNotEqual(self.StateTest.created_at, self.StateTest.updated_at)
+        self.assertNotEqual(
+            self.StateTest.created_at,
+            self.StateTest.updated_at)
 
     def tearDown(self):
         """Tears down testing methods"""

@@ -7,6 +7,7 @@ import uuid
 from datetime import datetime as dt
 from models import storage
 
+
 class TestBaseModel(unittest.TestCase):
     """Tests for basemodel class"""
 
@@ -16,7 +17,7 @@ class TestBaseModel(unittest.TestCase):
         cls.BaseTest = BaseModel()
         cls.BaseTest.phrase = "Drive"
         cls.BaseTest.number = 55
-    
+
     def test_attributes_BaseModel(self):
         """Tests for attributes"""
         self.assertTrue(hasattr(BaseModel, "__init__"))
@@ -59,6 +60,7 @@ class TestBaseModel(unittest.TestCase):
             os.remove("file.json")
         except Exception:
             pass
+
 
 if __name__ == "__main__":
     unittest.main()
