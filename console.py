@@ -177,9 +177,8 @@ class HBNBCommand(cmd.Cmd):
             elif customCommand == "update":
                 myArgs = line.split('(')[1].split(', ')
                 self.do_update(line.split(
-                    '.')[0] + ' ' + myArgs[0].strip('" ') +
-                    ' ' + myArgs[1].strip('" ') +
-                    ' ' + myArgs[2][:-1].strip('" '))
+                    '.')[0] + ' ' + line.split(
+                    '.')[1].split('(')[1][:-1].strip(' ').replace(',', ''))
             else:
                 return super().default(line)
         except IndexError:
