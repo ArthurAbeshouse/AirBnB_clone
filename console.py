@@ -167,7 +167,7 @@ class HBNBCommand(cmd.Cmd):
                 for x, y in allObj.items():
                     if x.split('.')[0] == line.split('.')[0]:
                         myList.append(str(y))
-                        print (("[{}]".format(
+                        print(("[{}]".format(
                             ', '.join(map(str, myList)))))
             elif customCommand == "count":
                 count = 0

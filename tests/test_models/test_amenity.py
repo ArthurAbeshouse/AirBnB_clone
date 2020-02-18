@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"1;95;0c""Unit tests for Amenity"""
+"Unit tests for Amenity"""
 import os
 import unittest
 from models.base_model import BaseModel
