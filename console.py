@@ -37,37 +37,30 @@ class HBNBCommand(cmd.Cmd):
         argss = shlex.split(line)
         if argss[0] == "BaseModel":
             new = BaseModel()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "User":
             new = User()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "State":
             new = State()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "City":
             new = City()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "Amenity":
             new = Amenity()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "Place":
             new = Place()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif argss[0] == "Review":
             new = Review()
-            self.storage.new(new)
             self.storage.save()
             print(new.id)
         elif line == "":
@@ -167,7 +160,7 @@ class HBNBCommand(cmd.Cmd):
                 for x, y in allObj.items():
                     if x.split('.')[0] == line.split('.')[0]:
                         myList.append(str(y))
-                        print (("[{}]".format(
+                        print(("[{}]".format(
                             ', '.join(map(str, myList)))))
             elif customCommand == "count":
                 count = 0
@@ -184,9 +177,8 @@ class HBNBCommand(cmd.Cmd):
             elif customCommand == "update":
                 myArgs = line.split('(')[1].split(', ')
                 self.do_update(line.split(
-                    '.')[0] + ' ' + myArgs[0].strip('" ') +
-                    ' ' + myArgs[1].strip('" ') +
-                    ' ' + myArgs[2][:-1].strip('" '))
+                    '.')[0] + ' ' + line.split(
+                    '.')[1].split('(')[1][:-1].strip(' ').replace(',', ''))
             else:
                 return super().default(line)
         except IndexError:
