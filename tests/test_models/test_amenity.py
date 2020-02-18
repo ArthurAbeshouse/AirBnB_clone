@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"1;95;0c""Unit tests for Amenity"""
+"""Unit tests for Amenity"""
 import os
 import unittest
 from models.base_model import BaseModel
@@ -10,7 +10,7 @@ from datetime import datetime as dt
 from models import storage
 
 
-class TestAmenity(TestBaseModel):
+class TestAmenity(unittest.TestCase):
     """Tests for Amenity class"""
 
     @classmethod
