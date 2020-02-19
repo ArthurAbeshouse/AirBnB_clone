@@ -31,6 +31,14 @@ class TestBaseModel(unittest.TestCase):
         p = style.check_files(['models/base_model.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
+    def test_docstring_BaseModel(self):
+        """Tests docstrings"""
+        self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__init__.__doc__)
+        self.assertIsNotNone(BaseModel.__str__.__doc__)
+        self.assertIsNotNone(BaseModel.save.__doc__)
+        self.assertIsNotNone(BaseModel.to_dict.__doc__)
+
     def test_attributes_BaseModel(self):
         """Tests for attributes"""
         self.assertTrue(hasattr(BaseModel, "__init__"))
