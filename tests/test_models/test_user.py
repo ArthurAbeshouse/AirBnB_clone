@@ -7,7 +7,6 @@ from models.user import User
 from tests.test_models.test_base_model import TestBaseModel
 import uuid
 from datetime import datetime as dt
-from models import storage
 
 
 class TestUser(TestBaseModel):
