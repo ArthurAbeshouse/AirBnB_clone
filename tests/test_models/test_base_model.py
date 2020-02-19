@@ -65,8 +65,9 @@ class TestBaseModel(unittest.TestCase):
     def test_create_BaseModel(self):
         """tests if it can create a base model"""
         base = self.BaseTest
-        base.created_at = dt.now()
+        now = dt.now()
         self.assertIsInstance(base.created_at, dt)
+        self.assertTrue(now >= base.created_at)
 
     def test_update_BaseModel(self):
         """Tests the update function"""
@@ -82,13 +83,6 @@ class TestBaseModel(unittest.TestCase):
         string = "[BaseModel] ({}) {}".format(self.BaseTest.id,
                                               self.BaseTest.__dict__)
         self.assertEqual(string, str(self.BaseTest))
-
-    def test_none_BaseModel(self):
-        """PLACEHOLDER"""
-        empty = {None: None}
-        with self.assertRaises(TypeError):
-            new = self.BaseTest(**empty)
-
 
 if __name__ == "__main__":
     unittest.main()
