@@ -33,6 +33,8 @@ class TestBaseModel(unittest.TestCase):
     def test_init_BaseModel(self):
         """Tests if BaseTest is a type BaseModel"""
         self.assertTrue(isinstance(self.BaseTest, BaseModel))
+        self.assertEqual(self.BaseTest.name, "Mike")
+        self.assertEqual(self.BaseTest.number, 55)
 
     def test_to_dict_BaseModel(self):
         """Tests if dictionary is functional"""
@@ -41,6 +43,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(B_Dict["__class__"], 'BaseModel')
         self.assertIsInstance(B_Dict['created_at'], str)
         self.assertIsInstance(B_Dict['updated_at'], str)
+
+    def test_docstring_BaseModel(self):
+         """Tests docstrings"""
+         self.assertIsNotNone(BaseModel.__doc__)
+         self.assertIsNotNone(BaseModel.__init__.__doc__)
+         self.assertIsNotNone(BaseModel.__str__.__doc__)
+         self.assertIsNotNone(BaseModel.save.__doc__)
+         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
     def test_id_BaseModel(self):
         """Tests for unique ids"""
@@ -57,15 +67,6 @@ class TestBaseModel(unittest.TestCase):
         base = self.BaseTest
         base.created_at = dt.now()
         self.assertIsInstance(base.created_at, dt)
-
-    def Test_kwargs_BaseModel(self):
-        """Tests **kwargs"""
-        base_model = self.BaseTest
-        base_model.name = self.BaseTest.name
-        base_model.number = self.BaseTest.number
-        base_model_json = base_model.to_dict()
-        new_base_model = self.BaseTest(**base_model_json)
-        self.assertEqual(new_base_model.to_dict(), base_model.to_dict())
 
     def test_update_BaseModel(self):
         """Tests the update function"""
