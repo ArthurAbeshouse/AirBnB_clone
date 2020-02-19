@@ -10,7 +10,7 @@ from datetime import datetime as dt
 from models import storage
 
 
-class TestAmenity(TestBaseModel):
+class TestAmenity(unittest.TestCase):
     """Tests for Amenity class"""
 
     @classmethod

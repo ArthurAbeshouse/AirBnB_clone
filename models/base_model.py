@@ -14,6 +14,8 @@ class BaseModel():
         if kwargs:
             try:
                 for x, y in kwargs.items():
+                    if x == "__class__":
+                        continue
                     if x == "created_at" or x == "updated_at":
                         y = datetime.strptime(y, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, x, y)
