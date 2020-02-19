@@ -10,6 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+import os
 
 class TestFileStorage(unittest.TestCase):
     """ Tests FileStorage """
@@ -35,7 +36,6 @@ class TestFileStorage(unittest.TestCase):
 
     def test_reload_FileStorage(self):
         """Tests reload in File Storage"""
-        import os
         store = FileStorage()
         store.save()
         Root = os.path.dirname(os.path.abspath("console.py"))
@@ -63,7 +63,6 @@ class TestFileStorage(unittest.TestCase):
 
     def tearDown(self):
         """Tears down testing methods"""
-        import os
         try:
             os.remove("file.json")
         except Exception:
