@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """Unit tests for BaseModel"""
-import os
 import unittest
 from models.base_model import BaseModel
 import uuid
 from datetime import datetime as dt
-from models import storage
+import os
+import json
 
 
 class TestBaseModel(unittest.TestCase):
@@ -18,11 +18,24 @@ class TestBaseModel(unittest.TestCase):
         cls.BaseTest.name = "Mike"
         cls.BaseTest.number = 55
 
-    def test_attributes_BaseModel(self):
-        """Tests for attributes"""
-        self.assertTrue(hasattr(BaseModel, "__init__"))
-        self.assertTrue(hasattr(BaseModel, "save"))
-        self.assertTrue(hasattr(BaseModel, "to_dict"))
+    @classmethod
+    def tearDown(cls):
+        """Tears down the test"""
+        del cls.base
+
+    def tearDown(self):
+        """Removes json file"""
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+
+    def test_kwargs_BaseModel(self):
+        """Tests kwargs"""
+        e = self.BaseTest
+        copy = e.to_dict()
+        new = BaseModel(**copy)
+        self.assertFalse(new is e)
 
     def test_init_BaseModel(self):
         """Tests if BaseTest is a type BaseModel"""
@@ -41,11 +54,17 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.BaseTest.id, str)
         self.assertIsInstance(uuid.UUID(self.BaseTest.id), uuid.UUID)
 
+    def test_save_BaseModel(self):
+        """Tests if saving works"""
+        self.BaseTest.save()
+        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
+
     def test_create_BaseModel(self):
-        """tests if it can create a base model"""
+        """Tests if it can create a base model"""
         base = self.BaseTest
-        base.created_at = dt.now()
+        now = dt.now()
         self.assertIsInstance(base.created_at, dt)
+        self.assertTrue(now >= base.created_at)
 
     def test_update_BaseModel(self):
         """Tests the update function"""
@@ -56,13 +75,11 @@ class TestBaseModel(unittest.TestCase):
         base.updated_at = dt.now()
         self.assertNotEqual(base.updated_at, store)
 
-    def tearDown(self):
-        """Tears down testing methods"""
-        try:
-            os.remove("file.json")
-        except Exception:
-            pass
-
+    def test_str_BaseModel(self):
+        """Tests the string"""
+        string = "[BaseModel] ({}) {}".format(self.BaseTest.id,
+                                              self.BaseTest.__dict__)
+        self.assertEqual(string, str(self.BaseTest))
 
 if __name__ == "__main__":
     unittest.main()
