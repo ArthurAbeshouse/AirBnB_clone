@@ -48,9 +48,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(uuid.UUID(self.BaseTest.id), uuid.UUID)
 
     def test_save_BaseModel(self):
-         """Tests if saving works"""
-         self.BaseTest.save()
-         self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
+        """Tests if saving works"""
+        self.BaseTest.save()
+        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
 
     def test_create_BaseModel(self):
         """tests if it can create a base model"""
@@ -81,6 +81,7 @@ class TestBaseModel(unittest.TestCase):
         string = "[BaseModel] ({}) {}".format(self.BaseTest.id,
                                               self.BaseTest.__dict__)
         self.assertEqual(string, str(self.BaseTest))
+
 
 if __name__ == "__main__":
     unittest.main()

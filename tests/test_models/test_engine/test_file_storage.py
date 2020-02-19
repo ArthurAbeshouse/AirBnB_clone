@@ -12,6 +12,7 @@ from models.place import Place
 from models.review import Review
 import os
 
+
 class TestFileStorage(unittest.TestCase):
     """ Tests FileStorage """
 
@@ -44,7 +45,7 @@ class TestFileStorage(unittest.TestCase):
             lines = f.readlines()
         try:
             os.remove(path)
-        except:
+        except BaseException:
             pass
         store.save()
         with open(path, 'r') as f:
@@ -52,7 +53,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(lines, lines_2)
         try:
             os.remove(path)
-        except:
+        except BaseException:
             pass
         with open(path, "w") as f:
             f.write("{}")
@@ -67,6 +68,7 @@ class TestFileStorage(unittest.TestCase):
             os.remove("file.json")
         except Exception:
             pass
+
 
 if __name__ == '__main__':
     unittest.main()
