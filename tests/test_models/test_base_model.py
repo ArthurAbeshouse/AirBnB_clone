@@ -83,5 +83,17 @@ class TestBaseModel(unittest.TestCase):
                                               self.BaseTest.__dict__)
         self.assertEqual(string, str(self.BaseTest))
 
+    def test_dict_to_obj_BaseModel(self):
+        """ """
+        json = self.BaseTest.to_dict()
+        obj = BaseModel(**json)
+        self.assertTrue(isinstance(obj, BaseModel))
+        self.assertEqual(obj.name, self.BaseTest.name)
+        self.assertEqual(obj.number, self.BaseTest.number)
+        self.assertEqual(obj.id, self.BaseTest.id)
+        self.assertEqual(obj.created_at, self.BaseTest.created_at)
+        self.assertEqual(obj.updated_at, self.BaseTest.updated_at)
+        self.assertEqual(obj, self.BaseTest)
+
 if __name__ == "__main__":
     unittest.main()
