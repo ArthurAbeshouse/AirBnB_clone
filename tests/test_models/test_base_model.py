@@ -78,7 +78,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(base.updated_at, store)
 
     def test_str_BaseModel(self):
-        """ """
+        """Tests the string"""
         string = "[BaseModel] ({}) {}".format(self.BaseTest.id,
                                               self.BaseTest.__dict__)
         self.assertEqual(string, str(self.BaseTest))
