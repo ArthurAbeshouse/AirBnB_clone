@@ -17,6 +17,11 @@ class TestBaseModel(unittest.TestCase):
         cls.BaseTest.name = "Mike"
         cls.BaseTest.number = 55
 
+    @classmethod
+    def tearDown(cls):
+        """TEST"""
+        del cls.base
+
     def tearDown(self):
         """Tears down testing methods"""
         try:
@@ -32,9 +37,11 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_dict_BaseModel(self):
         """Tests if dictionary is functional"""
-        base = self.BaseTest
-        number = base.to_dict()
-        self.assertEqual(base.to_dict(), number)
+        B_Dict = self.BaseTest.to_dict()
+        self.assertEqual(self.BaseTest.__class__.__name__, 'BaseModel')
+        self.assertEqual(B_Dict["__class__"], 'BaseModel')
+        self.assertIsInstance(B_Dict['created_at'], str)
+        self.assertIsInstance(B_Dict['updated_at'], str)
 
     def test_id_BaseModel(self):
         """Tests for unique ids"""
