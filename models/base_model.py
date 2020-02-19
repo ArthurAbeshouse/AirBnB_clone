@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Base Model """
-import models
 import copy
 import uuid
 from datetime import datetime
@@ -11,6 +10,7 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """ Init """
+        from models import storage
         if kwargs:
             try:
                 for x, y in kwargs.items():
@@ -32,6 +32,7 @@ class BaseModel():
 
     def save(self):
         """ Save """
+        from models import storage
         self.updated_at = datetime.now()
         models.storage.save()
 
