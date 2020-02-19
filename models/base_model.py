@@ -28,7 +28,7 @@ class BaseModel():
     def __str__(self):
         """ Str """
         return("[{}] ({}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__))
+            type(self).__name__, self.id, self.__dict__))
 
     def save(self):
         """ Save """
@@ -39,7 +39,7 @@ class BaseModel():
     def to_dict(self):
         """ to Dict """
         mydict = copy.deepcopy(self.__dict__)
-        mydict["__class__"] = self.__class__.__name__
+        mydict["__class__"] = type(self).__name__
         mydict["created_at"] = mydict["created_at"].isoformat()
         mydict["updated_at"] = mydict["updated_at"].isoformat()
         return mydict
