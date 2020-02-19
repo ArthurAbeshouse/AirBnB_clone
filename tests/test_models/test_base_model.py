@@ -60,11 +60,6 @@ class TestBaseModel(unittest.TestCase):
         base.created_at = dt.now()
         self.assertIsInstance(base.created_at, dt)
 
-    def test_save_BaseModel(self):
-        """Tests if saving works"""
-        self.BaseTest.save()
-        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
-
     def Test_kwargs_BaseModel(self):
         """Tests **kwargs"""
         base_model = self.BaseTest
