@@ -29,10 +29,6 @@ class TestBaseModel(unittest.TestCase):
         except Exception:
             pass
 
-    def test_BaseModel(self):
-        """ """
-        pass
-
     def test_kwargs_BaseModel(self):
         """Tests kwargs"""
         e = self.BaseTest
@@ -61,11 +57,11 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save_BaseModel(self):
         """Tests if saving works"""
-        self.assertIsInstance(self.BaseTest.id, str)
-        self.assertIsInstance(uuid.UUID(self.BaseTest.id), uuid.UUID)
+        self.BaseTest.save()
+        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
 
     def test_create_BaseModel(self):
-        """tests if it can create a base model"""
+        """Tests if it can create a base model"""
         base = self.BaseTest
         now = dt.now()
         self.assertIsInstance(base.created_at, dt)
