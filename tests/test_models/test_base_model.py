@@ -5,7 +5,7 @@ import unittest
 from models.base_model import BaseModel
 import uuid
 from datetime import datetime as dt
-from models import storage
+import pep8
 
 
 class TestBaseModel(unittest.TestCase):
@@ -25,6 +25,12 @@ class TestBaseModel(unittest.TestCase):
         except Exception:
             pass
 
+    def test_pep8_BaseModel(self):
+        """Tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/base_model.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
     def test_attributes_BaseModel(self):
         """Tests for attributes"""
         self.assertTrue(hasattr(BaseModel, "__init__"))
@@ -39,14 +45,6 @@ class TestBaseModel(unittest.TestCase):
         """Tests if saving works"""
         self.BaseTest.save()
         self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
-
-    def test_docstring_BaseModel(self):
-        """Tests docstrings"""
-        self.assertIsNotNone(BaseModel.__doc__)
-        self.assertIsNotNone(BaseModel.__init__.__doc__)
-        self.assertIsNotNone(BaseModel.__str__.__doc__)
-        self.assertIsNotNone(BaseModel.save.__doc__)
-        self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
     def test_to_dict_BaseModel(self):
         """Tests if dictionary is functional"""
