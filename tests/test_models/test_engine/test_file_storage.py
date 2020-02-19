@@ -11,16 +11,30 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 import os
+import pep8
 
 
 class TestFileStorage(unittest.TestCase):
     """ Tests FileStorage """
+
+    def test_pep8_FileStorage(self):
+        """Tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/engine/file_storage.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_save_FileStorage(self):
         """Tests if saving works"""
         store = FileStorage()
         store.save()
         self.assertTrue(os.path.exists('file.json'))
+
+    def test_attributes_FileStorage(self):
+        """ """
+        self.assertTrue(FileStorage.all.__doc__)
+        self.assertTrue(FileStorage.new.__doc__)
+        self.assertTrue(FileStorage.save.__doc__)
+        self.assertTrue(FileStorage.reload.__doc__)
 
     def test_all_FileStorage(self):
         """Tests if all is functional in File Storage"""
@@ -67,6 +81,14 @@ class TestFileStorage(unittest.TestCase):
             for line in r:
                 self.assertEqual(line, "{}")
         self.assertIs(store.reload(), None)
+
+    def tearDown(self):
+        """Tears down testing methods"""
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+
 
 if __name__ == '__main__':
     unittest.main()
