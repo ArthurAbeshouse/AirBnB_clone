@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 import uuid
 from datetime import datetime as dt
 import os
+import json
 
 
 class TestBaseModel(unittest.TestCase):
@@ -39,8 +40,6 @@ class TestBaseModel(unittest.TestCase):
     def test_init_BaseModel(self):
         """Tests if BaseTest is a type BaseModel"""
         self.assertTrue(isinstance(self.BaseTest, BaseModel))
-        self.assertEqual(self.BaseTest.name, "Mike")
-        self.assertEqual(self.BaseTest.number, 55)
 
     def test_to_dict_BaseModel(self):
         """Tests if dictionary is functional"""
@@ -49,6 +48,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(B_Dict["__class__"], 'BaseModel')
         self.assertIsInstance(B_Dict['created_at'], str)
         self.assertIsInstance(B_Dict['updated_at'], str)
+
+    def test_attribute_types_BaseModel(self):
+        """Tests the attributes of User"""
+        self.assertEqual(type(self.BaseTest.name), str)
+        self.assertEqual(type(self.BaseTest.number), int)
 
     def test_id_BaseModel(self):
         """Tests for unique ids"""
