@@ -36,7 +36,7 @@ class BaseModel():
 
     def to_dict(self):
         """ to Dict """
-        mydict = self.__dict__copy()
+        mydict = self.__dict__.copy()
         mydict["__class__"] = self.__class__.__name__
         mydict["created_at"] = mydict["created_at"].isoformat()
         mydict["updated_at"] = mydict["updated_at"].isoformat()
