@@ -19,15 +19,22 @@ class TestBaseModel(unittest.TestCase):
 
     @classmethod
     def tearDown(cls):
-        """TEST"""
+        """Tears down the test"""
         del cls.base
 
     def tearDown(self):
-        """Tears down testing methods"""
+        """Removes json file"""
         try:
             os.remove("file.json")
         except Exception:
             pass
+
+    def test_kwargs(self):
+        """Place Holder """
+        e = self.BaseTest
+        copy = e.to_dict()
+        new = BaseModel(**copy)
+        self.assertFalse(new is e)
 
     def test_init_BaseModel(self):
         """Tests if BaseTest is a type BaseModel"""
