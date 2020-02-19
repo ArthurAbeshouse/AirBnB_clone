@@ -3,7 +3,6 @@
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-import os
 import json
 from models.user import User
 from models.state import State
@@ -36,6 +35,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_reload_FileStorage(self):
         """Tests reload in File Storage"""
+        import os
         store = FileStorage()
         store.save()
         Root = os.path.dirname(os.path.abspath("console.py"))
@@ -63,6 +63,7 @@ class TestFileStorage(unittest.TestCase):
 
     def tearDown(self):
         """Tears down testing methods"""
+        import os
         try:
             os.remove("file.json")
         except Exception:
