@@ -1,12 +1,5 @@
 #!/usr/bin/python3
 """ File Storage """
-from models.base_model import BaseModel
-from models.user import User
-from models.amenity import Amenity
-from models.state import State
-from models.city import City
-from models.place import Place
-from models.review import Review
 import json
 import models
 import copy
@@ -36,6 +29,13 @@ class FileStorage():
 
     def reload(self):
         """ Reload """
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.amenity import Amenity
+        from models.state import State
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
         newDict2 = {}
         try:
             with open(self.__file_path) as f:

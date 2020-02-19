@@ -11,21 +11,13 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 import os
-import pep8
 
 
 class TestFileStorage(unittest.TestCase):
     """ Tests FileStorage """
 
-    def test_pep8_FileStorage(self):
-        """Tests pep8"""
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
-
     def test_save_FileStorage(self):
         """Tests if saving works"""
-        base = BaseModel()
         store = FileStorage()
         store.save()
         self.assertTrue(os.path.exists('file.json'))
