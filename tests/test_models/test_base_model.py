@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime as dt
 import os
 import json
+import pep8
 
 
 class TestBaseModel(unittest.TestCase):
@@ -30,6 +31,26 @@ class TestBaseModel(unittest.TestCase):
         except Exception:
             pass
 
+    def test_pep8_BaseModel(self):
+        """Tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/base_model.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
+    def test_docstring_BaseModel(self):
+        """Tests docstrings"""
+        self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__init__.__doc__)
+        self.assertIsNotNone(BaseModel.__str__.__doc__)
+        self.assertIsNotNone(BaseModel.save.__doc__)
+        self.assertIsNotNone(BaseModel.to_dict.__doc__)
+
+    def test_attributes_BaseModel(self):
+        """Tests for attributes"""
+        self.assertTrue(hasattr(BaseModel, "__init__"))
+        self.assertTrue(hasattr(BaseModel, "save"))
+        self.assertTrue(hasattr(BaseModel, "to_dict"))
+
     def test_kwargs_BaseModel(self):
         """Tests kwargs"""
         e = self.BaseTest
@@ -48,11 +69,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(B_Dict["__class__"], 'BaseModel')
         self.assertIsInstance(B_Dict['created_at'], str)
         self.assertIsInstance(B_Dict['updated_at'], str)
-
-    def test_attribute_types_BaseModel(self):
-        """Tests the attributes of User"""
-        self.assertEqual(type(self.BaseTest.name), str)
-        self.assertEqual(type(self.BaseTest.number), int)
 
     def test_id_BaseModel(self):
         """Tests for unique ids"""
