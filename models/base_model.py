@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Base Model """
-import copy
 import uuid
 from datetime import datetime
 
@@ -38,7 +37,8 @@ class BaseModel():
 
     def to_dict(self):
         """ to Dict """
-        mydict = copy.deepcopy(self.__dict__)
+        import copy
+        mydict = deepcopy(self.__dict__)
         mydict["__class__"] = self.__class__.__name__
         mydict["created_at"] = mydict["created_at"].isoformat()
         mydict["updated_at"] = mydict["updated_at"].isoformat()
