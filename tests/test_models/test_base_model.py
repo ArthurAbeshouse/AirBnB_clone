@@ -45,12 +45,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(B_Dict['updated_at'], str)
 
     def test_docstring_BaseModel(self):
-         """Tests docstrings"""
-         self.assertIsNotNone(BaseModel.__doc__)
-         self.assertIsNotNone(BaseModel.__init__.__doc__)
-         self.assertIsNotNone(BaseModel.__str__.__doc__)
-         self.assertIsNotNone(BaseModel.save.__doc__)
-         self.assertIsNotNone(BaseModel.to_dict.__doc__)
+        """Tests docstrings"""
+        self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__init__.__doc__)
+        self.assertIsNotNone(BaseModel.__str__.__doc__)
+        self.assertIsNotNone(BaseModel.save.__doc__)
+        self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
     def test_id_BaseModel(self):
         """Tests for unique ids"""
@@ -83,17 +83,12 @@ class TestBaseModel(unittest.TestCase):
                                               self.BaseTest.__dict__)
         self.assertEqual(string, str(self.BaseTest))
 
-    def test_dict_to_obj_BaseModel(self):
-        """Description"""
-        json = self.BaseTest.to_dict()
-        obj = BaseModel(**json)
-        self.assertTrue(isinstance(obj, BaseModel))
-        self.assertEqual(obj.name, self.BaseTest.name)
-        self.assertEqual(obj.number, self.BaseTest.number)
-        self.assertEqual(obj.id, self.BaseTest.id)
-        self.assertEqual(obj.created_at, self.BaseTest.created_at)
-        self.assertEqual(obj.updated_at, self.BaseTest.updated_at)
-        self.assertEqual(obj, self.BaseTest)
+    def test_none_BaseModel(self):
+        """PLACEHOLDER"""
+        empty = {None: None}
+        with self.assertRaises(TypeError):
+            new = self.BaseTest(**empty)
+
 
 if __name__ == "__main__":
     unittest.main()
