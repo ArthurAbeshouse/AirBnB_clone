@@ -24,12 +24,6 @@ class TestBaseModel(unittest.TestCase):
         except Exception:
             pass
 
-    def test_attributes_BaseModel(self):
-        """Tests for attributes"""
-        self.assertTrue(hasattr(BaseModel, "__init__"))
-        self.assertTrue(hasattr(BaseModel, "save"))
-        self.assertTrue(hasattr(BaseModel, "to_dict"))
-
     def test_init_BaseModel(self):
         """Tests if BaseTest is a type BaseModel"""
         self.assertTrue(isinstance(self.BaseTest, BaseModel))
