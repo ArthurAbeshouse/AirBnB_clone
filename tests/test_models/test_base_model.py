@@ -31,14 +31,6 @@ class TestBaseModel(unittest.TestCase):
         p = style.check_files(['models/base_model.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
-    def test_docstring_BaseModel(self):
-        """Tests docstrings"""
-        self.assertIsNotNone(BaseModel.__doc__)
-        self.assertIsNotNone(BaseModel.__init__.__doc__)
-        self.assertIsNotNone(BaseModel.__str__.__doc__)
-        self.assertIsNotNone(BaseModel.save.__doc__)
-        self.assertIsNotNone(BaseModel.to_dict.__doc__)
-
     def test_attributes_BaseModel(self):
         """Tests for attributes"""
         self.assertTrue(hasattr(BaseModel, "__init__"))
@@ -48,11 +40,6 @@ class TestBaseModel(unittest.TestCase):
     def test_init_BaseModel(self):
         """Tests if BaseTest is a type BaseModel"""
         self.assertTrue(isinstance(self.BaseTest, BaseModel))
-
-    def test_save_BaseModel(self):
-        """Tests if saving works"""
-        self.BaseTest.save()
-        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
 
     def test_to_dict_BaseModel(self):
         """Tests if dictionary is functional"""
@@ -72,6 +59,20 @@ class TestBaseModel(unittest.TestCase):
         base = self.BaseTest
         base.created_at = dt.now()
         self.assertIsInstance(base.created_at, dt)
+
+    def test_save_BaseModel(self):
+        """Tests if saving works"""
+        self.BaseTest.save()
+        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
+
+    def Test_kwargs_BaseModel(self):
+        """Tests **kwargs"""
+        base_model = self.BaseTest
+        base_model.name = self.BaseTest.name
+        base_model.number = self.BaseTest.number
+        base_model_json = base_model.to_dict()
+        new_base_model = self.BaseTest(**base_model_json)
+        self.assertEqual(new_base_model.to_dict(), base_model.to_dict())
 
     def test_update_BaseModel(self):
         """Tests the update function"""
