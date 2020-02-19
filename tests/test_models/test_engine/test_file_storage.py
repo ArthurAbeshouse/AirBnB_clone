@@ -25,6 +25,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save_FileStorage(self):
         """Tests if saving works"""
+        base = BaseModel()
         store = FileStorage()
         store.save()
         self.assertTrue(os.path.exists('file.json'))
@@ -74,14 +75,6 @@ class TestFileStorage(unittest.TestCase):
             for line in r:
                 self.assertEqual(line, "{}")
         self.assertIs(store.reload(), None)
-
-    def tearDown(self):
-        """Tears down testing methods"""
-        try:
-            os.remove("file.json")
-        except Exception:
-            pass
-
 
 if __name__ == '__main__':
     unittest.main()
