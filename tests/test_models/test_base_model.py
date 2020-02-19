@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 import uuid
 from datetime import datetime as dt
 import os
+import pep8
 
 
 class TestBaseModel(unittest.TestCase):
@@ -23,6 +24,12 @@ class TestBaseModel(unittest.TestCase):
             os.remove("file.json")
         except Exception:
             pass
+
+    def test_pep8_BaseModel(self):
+         """Tests pep8"""
+         style = pep8.StyleGuide(quiet=True)
+         p = style.check_files(['models/base_model.py'])
+         self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_attributes_BaseModel(self):
         """Tests for attributes"""
