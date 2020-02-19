@@ -3,6 +3,7 @@
 import uuid
 import copy
 from datetime import datetime
+import models
 
 
 class BaseModel():
@@ -10,7 +11,6 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """ Init """
-        from models import storage
         if kwargs:
             try:
                 for x, y in kwargs.items():
@@ -23,7 +23,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.new(self)
 
     def __str__(self):
         """ Str """
@@ -32,9 +32,8 @@ class BaseModel():
 
     def save(self):
         """ Save """
-        from models import storage
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """ to Dict """
