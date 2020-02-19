@@ -34,6 +34,33 @@ class TestFileStorage(unittest.TestCase):
         key = user.__class__.__name__ + "." + str(user.id)
         self.assertIsNotNone(item[key])
 
+    def test_reload_FileStorage(self):
+        """Tests reload in File Storage"""
+        store = FileStorage()
+        store.save()
+        Root = os.path.dirname(os.path.abspath("console.py"))
+        path = os.path.join(Root, "file.json")
+        with open(path, 'r') as f:
+            lines = f.readlines()
+        try:
+            os.remove(path)
+        except:
+            pass
+        store.save()
+        with open(path, 'r') as f:
+            lines_2 = f.readlines()
+        self.assertEqual(lines, lines_2)
+        try:
+            os.remove(path)
+        except:
+            pass
+        with open(path, "w") as f:
+            f.write("{}")
+        with open(path, "r") as r:
+            for line in r:
+                self.assertEqual(line, "{}")
+        self.assertIs(store.reload(), None)
+
     def tearDown(self):
         """Tears down testing methods"""
         try:
