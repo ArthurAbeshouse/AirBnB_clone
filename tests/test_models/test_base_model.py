@@ -2,7 +2,7 @@
 """Unit tests for BaseModel"""
 import unittest
 from models.base_model import BaseModel
-import uuid
+from uuid import UUID
 from datetime import datetime as dt
 import os
 
@@ -53,7 +53,7 @@ class TestBaseModel(unittest.TestCase):
     def test_id_BaseModel(self):
         """Tests for unique ids"""
         self.assertIsInstance(self.BaseTest.id, str)
-        self.assertIsInstance(uuid.UUID(self.BaseTest.id), uuid.UUID)
+        self.assertIsInstance(UUID(self.BaseTest.id), UUID)
 
     def test_save_BaseModel(self):
         """Tests if saving works"""
