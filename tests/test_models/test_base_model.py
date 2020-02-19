@@ -4,6 +4,7 @@ import unittest
 from models.base_model import BaseModel
 import uuid
 from datetime import datetime as dt
+import os
 
 
 class TestBaseModel(unittest.TestCase):
@@ -18,7 +19,6 @@ class TestBaseModel(unittest.TestCase):
 
     def tearDown(self):
         """Tears down testing methods"""
-        import os
         try:
             os.remove("file.json")
         except Exception:
