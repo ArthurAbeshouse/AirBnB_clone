@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Base Model """
+import models
 import uuid
 from datetime import datetime
 
@@ -18,7 +19,6 @@ class BaseModel():
             except TypeError:
                 pass
         else:
-            import models
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
@@ -31,14 +31,12 @@ class BaseModel():
 
     def save(self):
         """ Save """
-        import models
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """ to Dict """
-        import copy
-        mydict = copy.deepcopy(self.__dict__)
+        mydict = self.__dict__copy()
         mydict["__class__"] = self.__class__.__name__
         mydict["created_at"] = mydict["created_at"].isoformat()
         mydict["updated_at"] = mydict["updated_at"].isoformat()
