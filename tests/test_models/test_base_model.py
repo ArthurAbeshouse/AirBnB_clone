@@ -84,7 +84,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(string, str(self.BaseTest))
 
     def test_dict_to_obj_BaseModel(self):
-        """ """
+        """Description"""
         json = self.BaseTest.to_dict()
         obj = BaseModel(**json)
         self.assertTrue(isinstance(obj, BaseModel))
