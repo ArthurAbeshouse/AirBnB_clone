@@ -32,11 +32,9 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_dict_BaseModel(self):
         """Tests if dictionary is functional"""
-        B_Dict = self.BaseTest.to_dict()
-        self.assertEqual(self.BaseTest.__class__.__name__, 'BaseModel')
-        self.assertEqual(B_Dict["__class__"], 'BaseModel')
-        self.assertIsInstance(B_Dict['created_at'], str)
-        self.assertIsInstance(B_Dict['updated_at'], str)
+        base = self.BaseTest
+        number = base.to_dict()
+        self.assertEqual(base.to_dict(), number)
 
     def test_id_BaseModel(self):
         """Tests for unique ids"""
