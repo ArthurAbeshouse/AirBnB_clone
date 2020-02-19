@@ -23,6 +23,12 @@ class TestFileStorage(unittest.TestCase):
         p = style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
+    def test_save_FileStorage(self):
+        """Tests if saving works"""
+        store = FileStorage()
+        store.save()
+        self.assertTrue(os.path.exists('file.json'))
+
     def test_all_FileStorage(self):
         """Tests if all is functional in File Storage"""
         store = FileStorage()
