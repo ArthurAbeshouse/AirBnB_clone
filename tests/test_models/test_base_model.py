@@ -44,14 +44,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(B_Dict['created_at'], str)
         self.assertIsInstance(B_Dict['updated_at'], str)
 
-    def test_docstring_BaseModel(self):
-        """Tests docstrings"""
-        self.assertIsNotNone(BaseModel.__doc__)
-        self.assertIsNotNone(BaseModel.__init__.__doc__)
-        self.assertIsNotNone(BaseModel.__str__.__doc__)
-        self.assertIsNotNone(BaseModel.save.__doc__)
-        self.assertIsNotNone(BaseModel.to_dict.__doc__)
-
     def test_id_BaseModel(self):
         """Tests for unique ids"""
         self.assertIsInstance(self.BaseTest.id, str)
