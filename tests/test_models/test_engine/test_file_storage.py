@@ -50,9 +50,13 @@ class TestFileStorage(unittest.TestCase):
     def test_docstring_FileStorage(self):
         """Tests docstrings"""
         self.assertTrue(FileStorage.all.__doc__)
+        self.assertIsNotNone(FileStorage.all.__doc__)
         self.assertTrue(FileStorage.new.__doc__)
+        self.assertIsNotNone(FileStorage.new.__doc__)
         self.assertTrue(FileStorage.save.__doc__)
+        self.assertIsNotNone(FileStorage.save.__doc__)
         self.assertTrue(FileStorage.reload.__doc__)
+        self.assertIsNotNone(FileStorage.reload.__doc__)
         
     def test_save_FileStorage(self):
         """Tests if saving works"""
