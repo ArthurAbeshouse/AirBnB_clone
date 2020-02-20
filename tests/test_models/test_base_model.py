@@ -56,8 +56,12 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save_BaseModel(self):
         """Tests if saving works"""
-        self.BaseTest.save()
-        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
+        e = self.BaseTest
+        e.save()
+        key = self.BaseTest.__class__.__name__ + "." + e.id
+        with open('file.json') as f:
+            j = json.load(f)
+            self.assertEqual(j[key], e.to_dict())
 
     def test_create_BaseModel(self):
         """Tests if it can create a base model"""
@@ -80,6 +84,7 @@ class TestBaseModel(unittest.TestCase):
         string = "[BaseModel] ({}) {}".format(self.BaseTest.id,
                                               self.BaseTest.__dict__)
         self.assertEqual(string, str(self.BaseTest))
+
 
 if __name__ == "__main__":
     unittest.main()
