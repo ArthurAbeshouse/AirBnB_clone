@@ -28,6 +28,10 @@ class TestUser(TestBaseModel):
 
     def test_attribute_types_User(self):
         """Tests the attributes of User"""
+        self.assertIsNotNone(self.UserTest.first_name)
+        self.assertIsNotNone(self.UserTest.last_name)
+        self.assertIsNotNone(self.UserTest.email)
+        self.assertIsNotNone(self.UserTest.password)
         self.assertEqual(type(self.UserTest.first_name), str)
         self.assertEqual(type(self.UserTest.last_name), str)
         self.assertEqual(type(self.UserTest.email), str)
