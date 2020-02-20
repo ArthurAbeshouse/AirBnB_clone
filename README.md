@@ -1,4 +1,4 @@
-# AirBnB_clone
+# AirBnB_clone 
 
 ## Description
 This is the first step towards building our first web application: an AirBnB clone. This part of the project is the backend of the AirBnB. Our task was to create a custom command-line interface for data management.
