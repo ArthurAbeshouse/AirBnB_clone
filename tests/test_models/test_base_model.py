@@ -56,8 +56,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save_BaseModel(self):
         """Tests if saving works"""
-        self.assertTrue(hasattr(self.BaseTest, "updated_at"))
         self.BaseTest.save()
+        self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
 
     def test_create_BaseModel(self):
         """Tests if it can create a base model"""
