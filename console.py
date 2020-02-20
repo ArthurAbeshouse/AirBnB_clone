@@ -35,7 +35,9 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """ create [class] - Creates new object """
         argss = shlex.split(line)
-        if argss[0] == "BaseModel":
+        if line == "":
+            print("** class name missing **")
+        elif argss[0] == "BaseModel":
             new = BaseModel()
             self.storage.save()
             print(new.id)
@@ -63,8 +65,6 @@ class HBNBCommand(cmd.Cmd):
             new = Review()
             self.storage.save()
             print(new.id)
-        elif line == "":
-            print("** class name missing **")
         else:
             print("** class doesn't exist **")
 
@@ -142,8 +142,12 @@ class HBNBCommand(cmd.Cmd):
                     if len(argss) == 3:
                         print("** value missing **")
                         return
-                    myType = type(getattr(y, argss[2]))
-                    setattr(y, argss[2], myType(argss[3]))
+                    try:
+                        myType = type(getattr(y, argss[2]))
+                    except:
+                        setattr(y, argss[2], argss[3])
+                    else:
+                        setattr(y, argss[2], myType(argss[3]))
                     y.save()
                     return
             print("** no instance found **")
