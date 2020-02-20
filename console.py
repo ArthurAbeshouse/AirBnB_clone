@@ -179,10 +179,20 @@ class HBNBCommand(cmd.Cmd):
                 self.do_destroy(line.split('.')[0] + ' ' + line.split(
                     '.')[1].split('(')[1][:-1].strip('" '))
             elif customCommand == "update":
-                myArgs = line.split('(')[1].split(', ')
-                self.do_update(line.split(
-                    '.')[0] + ' ' + line.split(
-                    '.')[1].split('(')[1][:-1].strip(' ').replace(',', ''))
+                myArgs = line.split('(')[1][:-1]
+                if '{' in line:
+                    className = line.split('.')[0]
+                    id = myArgs[:myArgs.find(',')]
+                    myDict = line.split('{')[1][:-1]
+                    myDict = myDict.split(', ')
+                    for x in myDict:
+                        self.do_update(
+                            className + " " + id + " " + x.split(
+                                ": ")[0] + " " + x.split(": ")[1])
+                else:
+                    self.do_update(line.split(
+                        '.')[0] + ' ' + line.split(
+                        '.')[1].split('(')[1][:-1].strip(' ').replace(',', ''))
             else:
                 return super().default(line)
         except IndexError:
