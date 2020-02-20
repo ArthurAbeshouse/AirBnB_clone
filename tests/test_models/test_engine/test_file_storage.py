@@ -1,54 +1,55 @@
 #!/usr/bin/python3
-""" FileStoage unit tests """
-import unittest
+"""test for file storage"""
+from datetime import datetime
+import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-import json
-from models.user import User
-from models.state import State
-from models.city import City
 from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
 from models.place import Place
 from models.review import Review
+from models.state import State
+from models.user import User
 import os
 import pep8
+import unittest
+import uuid
 
 
 class TestFileStorage(unittest.TestCase):
-    """ Tests FileStorage """
-
+    """this will test the FileStorage"""
     @classmethod
-    def setUp(cls):
-        """Sets up testing methods"""
+    def setUpClass(cls):
+        """set up for test"""
         cls.user = User()
-        cls.user.first_name = "Betty"
-        cls.user.last_name = "Holberton"
-        cls.user.email = "BettyHolberton@holbertonschool.com"
+        cls.user.first_name = "Monty"
+        cls.user.last_name = "Python"
+        cls.user.email = "monty.python@yahoo.com"
         cls.storage = FileStorage()
         cls.path = "file.json"
 
     @classmethod
     def teardown(cls):
-        """Tears down the test"""
+        """at the end of the test this will tear it down"""
         del cls.user
+        """ if delete the file """
         if os.path.exists("file.json"):
             os.remove("file.json")
 
     def tearDown(self):
-        """Removes json file"""
+        """teardown"""
         try:
             os.remove("file.json")
         except Exception:
             pass
 
-    def test_pep8_FileStorage(self):
-        """Tests pep8"""
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
-
-    def test_docstring_FileStorage(self):
-        """Tests docstrings"""
+    def test_documentation(self):
+        """
+        Test documentation, created and not empty
+        """
+        self.assertTrue(FileStorage.__doc__)
+        self.assertIsNotNone(FileStorage.__doc__)
         self.assertTrue(FileStorage.all.__doc__)
         self.assertIsNotNone(FileStorage.all.__doc__)
         self.assertTrue(FileStorage.new.__doc__)
@@ -58,33 +59,29 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(FileStorage.reload.__doc__)
         self.assertIsNotNone(FileStorage.reload.__doc__)
 
-    def test_save_FileStorage(self):
-        """Tests if saving works"""
+    def test_all(self):
+        """tests if all works in File Storage"""
         storage = FileStorage()
-        storage.save()
-        self.assertTrue(os.path.exists('file.json'))
+        obj = storage.all()
+        self.assertIsNotNone(obj)
+        self.assertEqual(type(obj), dict)
+        self.assertIs(obj, storage._FileStorage__objects)
 
-    def test_all_FileStorage(self):
-        """Tests if all is functional in File Storage"""
+    def test_new(self):
+        """test when new is created"""
         storage = FileStorage()
-        dict_instances = storage.all()
-        self.assertIsNotNone(dict_instances)
-        self.assertEqual(type(dict_instances), dict)
-        self.assertIs(dict_instances, storage._FileStorage__objects)
-
-    def test_new_FileStorage(self):
-        """Tests when new is created in File Storage"""
-        storage = FileStorage()
-        item = storage.all()
+        obj = storage.all()
         user = User()
-        user.id = 22475
-        user.name = "Betty"
+        user.id = "123455"
+        user.name = "Monty"
         storage.new(user)
         key = user.__class__.__name__ + "." + str(user.id)
-        self.assertIsNotNone(item[key])
+        self.assertIsNotNone(obj[key])
 
-    def test_reload_FileStorage(self):
-        """Tests reload in File Storage"""
+    def test_reload_filestorage(self):
+        """
+        tests reload
+        """
         self.storage.save()
         Root = os.path.dirname(os.path.abspath("console.py"))
         path = os.path.join(Root, "file.json")
@@ -92,15 +89,15 @@ class TestFileStorage(unittest.TestCase):
             lines = f.readlines()
         try:
             os.remove(path)
-        except BaseException:
+        except Exception:
             pass
         self.storage.save()
         with open(path, 'r') as f:
-            lines_2 = f.readlines()
-        self.assertEqual(lines, lines_2)
+            lines2 = f.readlines()
+        self.assertEqual(lines, lines2)
         try:
             os.remove(path)
-        except BaseException:
+        except Exception:
             pass
         with open(path, "w") as f:
             f.write("{}")
@@ -109,6 +106,9 @@ class TestFileStorage(unittest.TestCase):
                 self.assertEqual(line, "{}")
         self.assertIs(self.storage.reload(), None)
 
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_pep8_conformance_file_storage(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/engine/file_storage.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
