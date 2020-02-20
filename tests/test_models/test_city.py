@@ -18,8 +18,6 @@ class TestCity(TestBaseModel):
     def setUp(cls):
         """Sets up testing methods"""
         cls.CityTest = City()
-        cls.CityTest.name = "NH"
-        cls.CityTest.state_id = "CT"
 
     def test_subclass_City(self):
         """Tests if City is a subclass of BaseModel"""
@@ -28,8 +26,8 @@ class TestCity(TestBaseModel):
 
     def test_attribute_types_City(self):
         """Tests the attributes of City"""
-        self.assertEqual(type(self.CityTest.name), str)
-        self.assertEqual(type(self.CityTest.state_id), str)
+        self.assertEqual((self.CityTest.name), '')
+        self.assertEqual((self.CityTest.state_id), '')
 
     def test_save_City(self):
         """Tests if saving works"""

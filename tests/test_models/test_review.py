@@ -17,9 +17,6 @@ class TestReview(TestBaseModel):
     def setUp(cls):
         """Sets up testing methods"""
         cls.ReviewTest = Review()
-        cls.ReviewTest.place_id = "asdf-6789"
-        cls.ReviewTest.user_id = "ghjl-1234"
-        cls.ReviewTest.text = "I give it an A/5"
 
     def test_subclass_Review(self):
         """Tests if Review is a subclass of BaseModel"""
@@ -28,9 +25,9 @@ class TestReview(TestBaseModel):
 
     def test_attribute_types_Review(self):
         """Tests the attributes of Review"""
-        self.assertEqual(type(self.ReviewTest.text), str)
-        self.assertEqual(type(self.ReviewTest.user_id), str)
-        self.assertEqual(type(self.ReviewTest.place_id), str)
+        self.assertEqual((self.ReviewTest.text), '')
+        self.assertEqual((self.ReviewTest.user_id), '')
+        self.assertEqual((self.ReviewTest.place_id), '')
 
     def test_save_Review(self):
         """Tests if saving works"""

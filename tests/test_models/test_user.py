@@ -16,10 +16,6 @@ class TestUser(TestBaseModel):
     def setUp(cls):
         """Sets up testing methods"""
         cls.UserTest = User()
-        cls.UserTest.first_name = "Betty"
-        cls.UserTest.last_name = "Holberton"
-        cls.UserTest.email = "BettyHolberton@holbertonschool.com"
-        cls.UserTest.password = "qwerty"
 
     def test_subclass_User(self):
         """Tests if User is a subclass of BaseModel"""
@@ -28,10 +24,14 @@ class TestUser(TestBaseModel):
 
     def test_attribute_types_User(self):
         """Tests the attributes of User"""
-        self.assertEqual(type(self.UserTest.first_name), str)
-        self.assertEqual(type(self.UserTest.last_name), str)
-        self.assertEqual(type(self.UserTest.email), str)
-        self.assertEqual(type(self.UserTest.password), str)
+        self.assertIsNotNone(self.UserTest.first_name)
+        self.assertIsNotNone(self.UserTest.last_name)
+        self.assertIsNotNone(self.UserTest.email)
+        self.assertIsNotNone(self.UserTest.password)
+        self.assertEqual((self.UserTest.first_name), '')
+        self.assertEqual((self.UserTest.last_name), '')
+        self.assertEqual((self.UserTest.email), '')
+        self.assertEqual((self.UserTest.password), '')
         self.assertNotEqual(hasattr(self.UserTest, "name"), True)
 
     def test_save_User(self):
