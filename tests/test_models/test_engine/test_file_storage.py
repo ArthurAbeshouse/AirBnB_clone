@@ -47,6 +47,13 @@ class TestFileStorage(unittest.TestCase):
         p = style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
+    def test_docstring_FileStorage(self):
+        """Tests docstrings"""
+        self.assertTrue(FileStorage.all.__doc__)
+        self.assertTrue(FileStorage.new.__doc__)
+        self.assertTrue(FileStorage.save.__doc__)
+        self.assertTrue(FileStorage.reload.__doc__)
+        
     def test_save_FileStorage(self):
         """Tests if saving works"""
         storage = FileStorage()
