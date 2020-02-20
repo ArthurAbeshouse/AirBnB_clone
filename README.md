@@ -33,7 +33,7 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 ## Models
-All the classes used in this project are contained in the [models](./models/)  folder. 
+All the classes used in this project are contained in the [models](./models/)  folder.
 
 File | Description | Attributes
 ---- |-------------|-----------
