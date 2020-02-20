@@ -57,7 +57,7 @@ class TestBaseModel(unittest.TestCase):
     def test_save_BaseModel(self):
         """Tests if saving works"""
         self.BaseTest.save()
-        self.assertEqual(self.BaseTest.updated_at, dt.now())
+        self.updated_at = dt.utcnow()
         self.assertNotEqual(self.BaseTest.created_at, self.BaseTest.updated_at)
 
     def test_create_BaseModel(self):
@@ -81,6 +81,7 @@ class TestBaseModel(unittest.TestCase):
         string = "[BaseModel] ({}) {}".format(self.BaseTest.id,
                                               self.BaseTest.__dict__)
         self.assertEqual(string, str(self.BaseTest))
+
 
 if __name__ == "__main__":
     unittest.main()
