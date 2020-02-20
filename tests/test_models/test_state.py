@@ -18,7 +18,6 @@ class TestState(TestBaseModel):
     def setUp(cls):
         """Sets up testing methods"""
         cls.StateTest = State()
-        cls.StateTest.name = "CT"
 
     def test_subclass_State(self):
         """Tests if State is a subclass of BaseModel"""
@@ -27,7 +26,7 @@ class TestState(TestBaseModel):
 
     def test_attribute_types_State(self):
         """Tests the attributes of State"""
-        self.assertEqual(type(self.StateTest.name), str)
+        self.assertEqual((self.StateTest.name), '')
         self.assertEqual(hasattr(self.StateTest, "name"), True)
 
     def test_save_State(self):

@@ -17,7 +17,6 @@ class TestAmenity(unittest.TestCase):
     def setUp(cls):
         """Sets up testing methods"""
         cls.AmenityTest = Amenity()
-        cls.AmenityTest.name = "Breakfast"
 
     def test_subclass_Amenity(self):
         """Tests if Amenity is a subclass of BaseModel"""
@@ -30,7 +29,7 @@ class TestAmenity(unittest.TestCase):
 
     def test_attribute_types_Amenity(self):
         """Tests the attributes of Amenity"""
-        self.assertEqual(type(self.AmenityTest.name), str)
+        self.assertEqual((self.AmenityTest.name), '')
 
     def test_save_Amenity(self):
         """Tests if saving works"""

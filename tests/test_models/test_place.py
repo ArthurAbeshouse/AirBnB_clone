@@ -17,17 +17,6 @@ class TestPlace(TestBaseModel):
     def setUp(cls):
         """Sets up testing methods"""
         cls.PlaceTest = Place()
-        cls.PlaceTest.city_id = "asdf-6789"
-        cls.PlaceTest.user_id = "ghjl-1234"
-        cls.PlaceTest.name = "Mohegan Sun"
-        cls.PlaceTest.description = "a world at play"
-        cls.PlaceTest.number_rooms = 1563
-        cls.PlaceTest.number_bathrooms = 7
-        cls.PlaceTest.max_guest = 96492
-        cls.PlaceTest.price_by_night = 15
-        cls.PlaceTest.latitude = 360.0
-        cls.PlaceTest.longitude = 180.0
-        cls.PlaceTest.amenity_ids = ["4se5dr-6tv39u"]
 
     def test_subclass_Place(self):
         """Tests if Place is a subclass of BaseModel"""
@@ -36,17 +25,17 @@ class TestPlace(TestBaseModel):
 
     def test_attribute_types_Place(self):
         """Tests the attributes of Place"""
-        self.assertEqual(type(self.PlaceTest.city_id), str)
-        self.assertEqual(type(self.PlaceTest.user_id), str)
-        self.assertEqual(type(self.PlaceTest.name), str)
-        self.assertEqual(type(self.PlaceTest.description), str)
-        self.assertEqual(type(self.PlaceTest.number_rooms), int)
-        self.assertEqual(type(self.PlaceTest.number_bathrooms), int)
-        self.assertEqual(type(self.PlaceTest.max_guest), int)
-        self.assertEqual(type(self.PlaceTest.price_by_night), int)
-        self.assertEqual(type(self.PlaceTest.latitude), float)
-        self.assertEqual(type(self.PlaceTest.longitude), float)
-        self.assertEqual(type(self.PlaceTest.amenity_ids), list)
+        self.assertEqual((self.PlaceTest.city_id), '')
+        self.assertEqual((self.PlaceTest.user_id), '')
+        self.assertEqual((self.PlaceTest.name), '')
+        self.assertEqual((self.PlaceTest.description), '')
+        self.assertEqual((self.PlaceTest.number_rooms), 0)
+        self.assertEqual((self.PlaceTest.number_bathrooms), 0)
+        self.assertEqual((self.PlaceTest.max_guest), 0)
+        self.assertEqual((self.PlaceTest.price_by_night), 0)
+        self.assertEqual((self.PlaceTest.latitude), 0.0)
+        self.assertEqual((self.PlaceTest.longitude), 0.0)
+        self.assertEqual((self.PlaceTest.amenity_ids), [])
 
     def test_save_Place(self):
         """Tests if saving works"""
