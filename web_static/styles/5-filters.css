@@ -6,15 +6,15 @@
     border-radius: 4px;
 }
 
-.filters .locations,
-.filters .amenities {
+.locations,
+.amenities {
     height: 100%;
     width: 25%;
     display: inline-block;
     margin-left: 50px;
 }
 
-.filters .locations {
+.locations {
     border-right: 1px solid #DDDDDD;
 }
 
